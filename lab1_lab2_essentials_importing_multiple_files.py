@@ -8,10 +8,12 @@
 import numpy as np
 import glob
 
-
 # In[2]:
 
-
+CCD_PIXELS = 2048
+LENGTH_HEADER = 17
+LENGTH_FOOTER = 1
+    
 # Function
 #--------------------------------------#
 def get_signal_optimal(file_path):
@@ -20,14 +22,11 @@ def get_signal_optimal(file_path):
     This one replaces append()s w/ assignments to save time & space.
     '''
     # These constants better b defined at start of the whole code
-    CCD_PIXELS = 2048
-    LENGTH_HEADER = 17
-    LENGTH_FOOTER = 1
-    
-    pixel = np.arange(0, CCD_PIXELS)
     
     files = glob.glob(file_path)
     n_files = len(files)
+    
+    pixel = np.arange(0, CCD_PIXELS)
     signal = np.zeros((n_files, CCD_PIXELS)) # An empty 2D array of zeros
     
     for i in range(n_files):
@@ -46,5 +45,7 @@ lab2_file_path = 'example_data/lab2_neon_data/*.txt'
 # Import data by executing function
 #--------------------------------------#
 pixel, signal = get_signal_optimal(lab2_file_path)
+print(pixel)
+print(signal)
 #--------------------------------------#
 
